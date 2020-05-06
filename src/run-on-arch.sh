@@ -15,7 +15,7 @@ QEMU_VERSION=4.2.0-6
 
 sudo apt update -y 
 curl -L https://github.com/multiarch/qemu-user-static/releases/download/v${QEMU_VERSION}/qemu-$ARCH-static.tar.gz 
-sudo tar zxvf - -C /usr/bin
+sudo tar qemu-$ARCH-static.tar.gz zxvf -C /usr/bin
 
 ACT_PATH=$(dirname $(dirname $(readlink -fm "$0")))
 
