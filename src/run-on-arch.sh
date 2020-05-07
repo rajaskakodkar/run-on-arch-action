@@ -25,6 +25,7 @@ docker build . --file $ACT_PATH/Dockerfiles/Dockerfile.$ARCH.$DISTRO --tag multi
 docker run \
   --workdir /github/workspace \
   --rm \
+  -- privileged \
   -e HOME=/github/home \
   -e GITHUB_REF \
   -e GITHUB_SHA \
