@@ -19,7 +19,7 @@ sudo apt update -y
 
 ACT_PATH=$(dirname $(dirname $(readlink -fm "$0")))
 
-docker run --rm --privileged multiarch/qemu-user-static:s390x-4.2.0-6 --reset -p yes
+docker run --rm --privileged multiarch/qemu-user-static:4.2.0-6 --reset -p yes
 docker build . --file $ACT_PATH/Dockerfiles/Dockerfile.$ARCH.$DISTRO --tag multiarchimage 
 
 docker run \
