@@ -11,9 +11,11 @@ QEMU_VERSION=4.2.0-6
 
 # Install support for new archs via qemu
 # Platforms: linux/amd64, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/arm/v7, linux/arm/v6
-#sudo apt update -y && sudo apt install -y qemu qemu-user-static
+sudo apt update -y && sudo apt install -y qemu qemu-user-static
 
 sudo apt update -y 
+curl -L https://github.com/multiarch/qemu-user-static/releases/download/v${QEMU_VERSION}/x86_64_qemu-s390x-static.tar.gz | tar zxvf - -C /usr/bin
+chmod +x /usr/bin/qemu-*
 #curl -L https://github.com/multiarch/qemu-user-static/releases/download/v${QEMU_VERSION}/qemu-$ARCH-static.tar.gz 
 #sudo tar zxvf qemu-$ARCH-static.tar.gz -C /usr/bin
 
@@ -42,7 +44,6 @@ docker run \
   -e RUNNER_TOOL_CACHE \
   -e RUNNER_TEMP \
   -e RUNNER_WORKSPACE \
-  -v "/var/run/docker.sock":"/var/run/docker.sock" \
   -v "/home/runner/work/_temp/_github_home":"/github/home" \
   -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" \
   -v "${PWD}":"/github/workspace" \
