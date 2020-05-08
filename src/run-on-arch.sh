@@ -45,6 +45,7 @@ docker run \
   -e RUNNER_TEMP \
   -e RUNNER_WORKSPACE \
   -v "/home/runner/work/_temp/_github_home":"/github/home" \
+  -v "/var/run/docker.sock":"/var/run/docker.sock" \
   -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" \
   -v "${PWD}":"/github/workspace" \
   $ADDITIONAL_ARGS \
