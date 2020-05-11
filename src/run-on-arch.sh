@@ -24,10 +24,14 @@ ACT_PATH=$(dirname $(dirname $(readlink -fm "$0")))
 docker run --rm --privileged multiarch/qemu-user-static:4.2.0-6 --reset -p yes
 docker build . --file $ACT_PATH/Dockerfiles/Dockerfile.$ARCH.$DISTRO --tag multiarchimage 
 
+sudo apt update -y && sudo apt install -y git
+
+git clone https://github.com/rajaskakodkar/cadvisor.git
+git checkout s390x-integration-test
+
 docker run \
   --workdir /github/workspace \
   --rm \
-  --privileged \
   -e HOME=/github/home \
   -e GITHUB_REF \
   -e GITHUB_SHA \
