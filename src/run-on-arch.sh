@@ -29,6 +29,8 @@ sudo apt update -y && sudo apt install -y git
 git clone https://github.com/rajaskakodkar/cadvisor.git
 git checkout s390x-integration-test
 
+GORACE="halt_on_error=1" ./cadvisor --docker_env_metadata_whitelist=TEST_VAR --v=6 --logtostderr $CADVISOR_ARGS &
+
 docker run \
   --workdir /github/workspace \
   --rm \
