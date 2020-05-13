@@ -26,16 +26,10 @@ docker build . --file $ACT_PATH/Dockerfiles/Dockerfile.$ARCH.$DISTRO --tag multi
 
 sudo apt update -y && sudo apt install -y git
 
-git clone https://github.com/rajaskakodkar/cadvisor.git
-cd cadvisor
-git checkout s390x-integration-test
-source build/config/plain.sh
-GORACE="halt_on_error=1" ./cadvisor --docker_env_metadata_whitelist=TEST_VAR --v=6 --logtostderr $CADVISOR_ARGS &
-
 docker run \
   --workdir /github/workspace \
   --rm \
-  -- privileged \
+  --privileged \
   -e HOME=/github/home \
   -e GITHUB_REF \
   -e GITHUB_SHA \
