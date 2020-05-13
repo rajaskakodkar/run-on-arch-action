@@ -35,6 +35,7 @@ GORACE="halt_on_error=1" ./cadvisor --docker_env_metadata_whitelist=TEST_VAR --v
 docker run \
   --workdir /github/workspace \
   --rm \
+  -- privileged \
   -e HOME=/github/home \
   -e GITHUB_REF \
   -e GITHUB_SHA \
@@ -52,7 +53,6 @@ docker run \
   -e RUNNER_TEMP \
   -e RUNNER_WORKSPACE \
   -v "/home/runner/work/_temp/_github_home":"/github/home" \
-  -v "/var/run/docker.sock":"/var/run/docker.sock" \
   -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" \
   -v "${PWD}":"/github/workspace" \
   $ADDITIONAL_ARGS \
