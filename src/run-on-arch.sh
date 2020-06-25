@@ -7,7 +7,7 @@ DISTRO=$2
 COMMANDS=$3
 COMMANDS="${COMMANDS//[$'\t\r\n']+/;}" #Replace newline with ;
 ADDITIONAL_ARGS=$4
-QEMU_VERSION=4.2.0-6
+QEMU_VERSION=4.2.0-7
 
 # Install support for new archs via qemu
 # Platforms: linux/amd64, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/arm/v7, linux/arm/v6
@@ -15,7 +15,7 @@ sudo apt update -y && sudo apt install -y qemu qemu-user-static binfmt-support
 
 ACT_PATH=$(dirname $(dirname $(readlink -fm "$0")))
 
-docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker run --rm --privileged multiarch/qemu-user-static:$QEMU_VERSION --reset -p yes
 docker build . --file $ACT_PATH/Dockerfiles/Dockerfile.$ARCH.$DISTRO --tag multiarchimage 
 
 
